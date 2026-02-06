@@ -1,0 +1,30 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<div style="margin-bottom: 20px;">
+    <h2>My Tasks ({{ count }})</h2>
+</div>
+
+<div class="task-items-wrapper">
+    {% for task in tasks %}
+    <div class="task-wrapper">
+        <div class="task-title">
+            {% if task.completed %}
+                <div style="color: grey;">
+                    <strike>{{ task.title }}</strike>
+                </div>
+            {% else %}
+                <a href="{% url 'task-update' task.id %}">{{ task.title }}</a>
+            {% endif %}
+        </div>
+        <a class="delete-icon" href="{% url 'task-delete' task.id %}">x</a>
+    </div>
+    {% empty %}
+    <p>No items in list</p>
+    {% endfor %}
+</div>
+
+<a href="{% url 'task-create' %}" class="btn-add">Add New Task</a>
+
+{% endblock content %}

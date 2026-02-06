@@ -1,0 +1,13 @@
+{% extends 'core/base.html' %}
+{% block content %}
+    <div class="header-bar" style="margin: -20px -20px 20px -20px; background-color: #D32F2F;">
+        <a href="{% url 'task-list' %}">&#8592; Back</a>
+        <h3>Delete Item</h3>
+    </div>
+
+    <p>Are you sure you want to delete "{{ task }}"?</p>
+    <form method="POST">
+        {% csrf_token %}
+        <input class="btn-submit" style="background-color: #D32F2F;" type="submit" value="Confirm Delete">
+    </form>
+{% endblock content %}

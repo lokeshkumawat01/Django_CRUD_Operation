@@ -1,0 +1,14 @@
+{% extends 'core/base.html' %}
+{% block content %}
+    
+    <div class="header-bar" style="margin: -20px -20px 20px -20px;">
+        <a href="{% url 'task-list' %}">&#8592; Back</a>
+        <h3>{{ title }}</h3>
+    </div>
+
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input class="btn-submit" type="submit" value="Save Task">
+    </form>
+{% endblock content %}

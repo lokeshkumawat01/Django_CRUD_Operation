@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Django Task Manager</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'core/style.css' %}">
+</head>
+<body>
+
+    <div class="container">
+        <header class="header-bar">
+            <h1>Todo App</h1>
+            {% if request.user.is_authenticated %}
+                <p>Hello, {{ request.user }}</p>
+                <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-link">Logout</button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+            {% endif %}
+        </header>
+
+        <div class="card-body">
+            {% block content %}
+            {% endblock content %}
+        </div>
+    </div>
+
+</body>
+</html>
